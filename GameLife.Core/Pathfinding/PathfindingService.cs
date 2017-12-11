@@ -22,10 +22,10 @@ namespace GameLife.Core.Pathfinding
             startingNode.F = startingNode.G + Heuristic(startingNode, targetNode);
             openList.Add(startingNode);
 
-
             while (openList.Count > 0)
             {
                 var currentNode = openList.OrderBy(n => n.F).FirstOrDefault();
+
                 if (currentNode.X == targetNode.X && currentNode.Y == targetNode.Y)
                 {
                     return ConstructPath(currentNode);
@@ -36,10 +36,6 @@ namespace GameLife.Core.Pathfinding
 
                 foreach (var neighbor in GetNeighbors(currentNode, nodes))
                 {
-                    if (neighbor.Equals(targetNode))
-                    {
-                        Debug.WriteLine("Found end");
-                    }
                     if (!closedList.Contains(neighbor))
                     {
                         var heuristic = Heuristic(neighbor, targetNode);
@@ -182,22 +178,10 @@ namespace GameLife.Core.Pathfinding
 
         private float Heuristic(Node currentNode, Node targetNode)
         {
-            //var dx = Math.Abs(currentNode.X - targetNode.X);
-            //var dy = Math.Abs(currentNode.Y - targetNode.Y);
-            //var D = currentNode.IsDiagonal ? 1.414f : 1;
-            //var heuristic = (D * Math.Sqrt(dx * dx + dy * dy));
-            //return (float)heuristic;
-
             var dx = Math.Abs(currentNode.X - targetNode.X);
             var dy = Math.Abs(currentNode.Y - targetNode.Y);
             var heuristic = Math.Sqrt(dx * dx + dy * dy);
             return (float)heuristic;
-
-            //var dx = Math.Abs(currentNode.X - targetNode.X);
-            //var dy = Math.Abs(currentNode.Y - targetNode.Y);
-            //return (dx + dy) + (-1 * 1) * Math.Min(dx, dy);
-
-
         }
 
         private List<Node> ConstructPath(Node targetNode)
