@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameLife.Core.Components
 {
-    public class MovementPatternComponent : Component
+    public class MovementPatternComponent : TimedComponent
     {
         public MovementPatterns MovementPattern { get; set; }
 
@@ -20,14 +20,7 @@ namespace GameLife.Core.Components
         /// How far they move each time they move
         /// </summary>
         public int DistanceY { get; set; } = 1;
-
-
-        /// <summary>
-        /// In miliseconds
-        /// </summary>
-        public int Delay { get; set; } = 1000;
-        
-        public int DelayTimer { get; set; }
+  
     }
 
     public enum MovementPatterns

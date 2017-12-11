@@ -32,6 +32,15 @@ namespace GameLife.Core
 
             entity.Components.Add(new HealthComponent());
 
+            entity.Components.Add(new PathfindingComponent()
+            {
+                TargetX = Console.WindowWidth - 1,
+                TargetY = Console.WindowHeight - 1,
+                Delay = 250
+            });
+
+            entity.Components.Add(new ImpassableComponent());
+
             return entity;
         }
 
@@ -65,6 +74,27 @@ namespace GameLife.Core
 
             var movementPatternComponent = entity.GetComponent<MovementPatternComponent>();
             movementPatternComponent.MovementPattern = MovementPatterns.ZigZag;
+
+            return entity;
+        }
+
+        public static Entity CreateImpassableEntity(int x, int y)
+        {
+            Entity entity = new Entity();
+
+            entity.Components.Add(new DrawingComponent
+            {
+                Symbol = "X",
+                Color = ConsoleColor.Gray
+            });
+
+            entity.Components.Add(new PositionComponent
+            {
+                X = x,
+                Y = y,
+            });
+
+            entity.Components.Add(new ImpassableComponent());
 
             return entity;
         }

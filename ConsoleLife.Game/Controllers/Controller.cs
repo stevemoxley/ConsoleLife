@@ -11,7 +11,7 @@ namespace ConsoleLife.Framework.Controllers
     {
         public abstract void Update(GameTime gameTime);
 
-        public List<Entity> GetEntities<T>() where T : Component
+        public List<Entity> GetEntities<T>() where T : Components.Component
         {
             return Game.AllEntities.Where(e => e.HasComponent<T>()).ToList();
         }

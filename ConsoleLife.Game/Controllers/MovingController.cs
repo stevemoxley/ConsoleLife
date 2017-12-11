@@ -18,13 +18,23 @@ namespace ConsoleLife.Framework.Controllers
                 typeof(PositionComponent)
             });
 
-            foreach (var entity in entities)
+            var positionEntities = GetEntities(new List<Type>
             {
-                var moveableComponent = entity.GetComponent<MoveableComponent>();
+                typeof(PositionComponent)
+            });
+
+            foreach (var entity in positionEntities)
+            {
                 var positionComponent = entity.GetComponent<PositionComponent>();
 
                 positionComponent.PreviousX = positionComponent.X;
                 positionComponent.PreviousY = positionComponent.Y;
+            }
+
+            foreach (var entity in entities)
+            {
+                var moveableComponent = entity.GetComponent<MoveableComponent>();
+                var positionComponent = entity.GetComponent<PositionComponent>();
 
                 if(moveableComponent.MoveX != 0)
                 {

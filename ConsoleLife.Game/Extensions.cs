@@ -11,19 +11,24 @@ namespace ConsoleLife.Framework
     {
         public static bool HasComponent<T>(this Entity entity)
         {
-            return entity.Components.Any(c => c.GetType() == typeof(T));
+            return entity.Components.Any(c => c.GetType() == typeof(T) || c.GetType().IsSubclassOf(typeof(T)));
         }
 
         public static bool HasComponent(this Entity entity, Type type)
         {
-            var result = entity.Components.Any(c => c.GetType() == type);
+            var result = entity.Components.Any(c => c.GetType() == type || c.GetType().IsSubclassOf(type));
 
             return result;
         }
 
         public static T GetComponent<T>(this Entity entity) where T : Components.Component
         {
-            return entity.Components.Where(c => c.GetType() == typeof(T)).FirstOrDefault() as T;
+            return entity.Components.Where(c => c.GetType() == typeof(T) || c.GetType().IsSubclassOf(typeof(T))).FirstOrDefault() as T;
+        }
+
+        public static List<Components.Component> GetComponents<T>(this Entity entity) where T : Components.Component
+        {
+            return entity.Components.Where(c => c.GetType() == typeof(T) || c.GetType().IsSubclassOf(typeof(T))).ToList();
         }
 
         public static void Add(this Entity entity)

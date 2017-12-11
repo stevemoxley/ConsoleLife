@@ -1,14 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2112E1D1-53D3-49A0-86B6-5FE56FE8E1F7}</ProjectGuid>
+    <ProjectGuid>5a2c592e-4e35-4033-be8d-33b289868a7f</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleLife.Framework</RootNamespace>
-    <AssemblyName>ConsoleLife.Framework</AssemblyName>
+    <RootNamespace>ConsoleLife.Core.Pathfinding</RootNamespace>
+    <AssemblyName>ConsoleLife.Core.Pathfinding</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,33 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System"/>
+    
+    <Reference Include="System.Core"/>
+    <Reference Include="System.Xml.Linq"/>
+    <Reference Include="System.Data.DataSetExtensions"/>
+    
+    
+    <Reference Include="Microsoft.CSharp"/>
+    
+    <Reference Include="System.Data"/>
+    
+    <Reference Include="System.Net.Http"/>
+    
+    <Reference Include="System.Xml"/>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\Component.cs" />
-    <Compile Include="Components\DrawingComponent.cs" />
-    <Compile Include="Components\MoveableComponent.cs" />
-    <Compile Include="Components\PositionComponent.cs" />
-    <Compile Include="Components\TimedComponent.cs" />
-    <Compile Include="Controllers\Controller.cs" />
-    <Compile Include="Controllers\DrawingController.cs" />
-    <Compile Include="Controllers\MovingController.cs" />
-    <Compile Include="Controllers\TimerController.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="GameInitializer.cs" />
-    <Compile Include="GameTime.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RNG.cs" />
-    <Compile Include="World.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-</Project>
+ </Project>

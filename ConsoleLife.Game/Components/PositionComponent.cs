@@ -23,5 +23,7 @@ namespace ConsoleLife.Framework.Components
                 return PreviousX != X || PreviousY != Y;
             }
         }
+
+        public bool Placed { get; set; } = false;
     }
 }

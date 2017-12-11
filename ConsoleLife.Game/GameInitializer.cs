@@ -13,6 +13,7 @@ namespace ConsoleLife.Framework
         public static void InitializeControllers()
         {
             Game.AllControllers.Add(new DrawingController());
+            Game.AllControllers.Add(new TimerController());
             Game.AllControllers.Add(new MovingController());
         }
         

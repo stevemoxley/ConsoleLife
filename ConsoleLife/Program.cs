@@ -12,9 +12,14 @@ namespace ConsoleLife
     {
         static void Main(string[] args)
         {
+
+            var x = Console.BufferWidth;
+            var y = Console.BufferHeight;
+
             GameInitializer.InitializeGame();
 
             Game.Start();
+
         }
     }
 }
