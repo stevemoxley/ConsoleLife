@@ -49,6 +49,12 @@ namespace ConsoleLife.Framework
             _deleteWaitList.Add(entity);
         }
 
+        public static void RemoveEntity(Guid id)
+        {
+            var entity = AllEntities.Where(e => e.Id == id).FirstOrDefault();
+            RemoveEntity(entity);
+        }
+
         private static void Update()
         {
             //These first

@@ -30,23 +30,23 @@ namespace GameLife.Core.Controllers
                 typeof(MoveableComponent)
             });
 
-
             foreach (var entity in entities)
             {
                 var positionComponent = entity.GetComponent<PositionComponent>();
                 var pathfindingComponent = entity.GetComponent<PathfindingComponent>();
                 var movableComponent = entity.GetComponent<MoveableComponent>();
 
-                if(pathfindingComponent.Elapsed)
+                if(pathfindingComponent.Elapsed && HasTarget(pathfindingComponent))
                 {
-                    
                     if(!HasNewLocation(positionComponent, pathfindingComponent))
                     {
+                        //We are at the target
+                        pathfindingComponent.ArrivedAtTarget = true;
                         continue;
                     }
 
                     //Find the path
-                    var path = _pathfindingService.FindPath(positionComponent.X, positionComponent.Y, pathfindingComponent.TargetX, pathfindingComponent.TargetY, GenerateNodeMap());
+                    var path = _pathfindingService.FindPath(positionComponent, pathfindingComponent);
                     if (path != null && path.Count > 0)
                     {
                         var nextStep = path[0];
@@ -54,8 +54,18 @@ namespace GameLife.Core.Controllers
                         movableComponent.MoveX = nextMovement.Item1;
                         movableComponent.MoveY = nextMovement.Item2;
                     }
+                    else
+                    {
+                        //No path 
+                        pathfindingComponent.UnableToFindPath = true;
+                    }
                 }
             }
+        }
+
+        private bool HasTarget(PathfindingComponent pathfindingComponent)
+        {
+            return pathfindingComponent.TargetX != -1 && pathfindingComponent.TargetY != -1;
         }
 
         private bool HasNewLocation(PositionComponent positionComponent, PathfindingComponent pathfindingComponent)
@@ -70,53 +80,6 @@ namespace GameLife.Core.Controllers
         private Tuple<int, int> NextMovement(int currentX, int currentY, int nextX, int nextY)
         {
             return new Tuple<int, int>(nextX - currentX, nextY - currentY);
-        }
-
-        private Node[,] GenerateNodeMap()
-        {
-            Node[,] result = new Node[Console.WindowWidth, Console.WindowHeight];
-            var entities = Game.AllEntities.Where(e => e.HasComponent<PositionComponent>());
-
-            foreach (var entity in entities)
-            {
-                var positionComponent = entity.GetComponent<PositionComponent>();
-                Node node = new Node();
-                node.X = positionComponent.X;
-                node.Y = positionComponent.Y;
-
-                if (entity.HasComponent<MoveableComponent>())
-                {
-                    var moveableComponent = entity.GetComponent<MoveableComponent>();
-                    node.X = positionComponent.X + moveableComponent.MoveX;
-                    node.Y = positionComponent.Y + moveableComponent.MoveY;
-                }
-
-                if(entity.HasComponent<ImpassableComponent>())
-                {
-                    node.IsValid = false;
-                }
-
-                result[node.X, node.Y] = node;
-            }
-
-
-            for (int x = 0; x < Console.WindowWidth; x++)
-            {
-                for (int y = 0; y < Console.WindowHeight; y++)
-                {
-                    var node = result[x, y];
-                    if(node == null)
-                    {
-                        node = new Node();
-                        node.X = x;
-                        node.Y = y;
-                        result[node.X, node.Y] = node;
-                    }
-                }
-            }
-
-            return result;
-
         }
 
         private PathfindingService _pathfindingService;

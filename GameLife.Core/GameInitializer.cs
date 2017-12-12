@@ -21,28 +21,32 @@ namespace GameLife.Core
         {
             Game.AllControllers.Add(new MovementPatternController());
             Game.AllControllers.Add(new PathfindingController());
+
+            Game.AllControllers.Add(new SpawnFoodController());
+
+            Game.AllControllers.Add(new SearchForFoodController());
         }
 
         private static void InitializeEntities()
         {
             var life = EntityFactory.CreateLifeEntity(0, 0);
             life.Add();
-         
+
+            var life1 = EntityFactory.CreateLifeEntity(25, 0);
+            life1.Add();
+
             var life2 = EntityFactory.CreateLifeEntity(50, 0);
             life2.Add();
 
             var life3 = EntityFactory.CreateLifeEntity(75, 0);
             life3.Add();
 
-            var life4 = EntityFactory.CreateLifeEntity(25, 0);
-            life4.Add();
-
             InitializeTerrain();
         }
 
         private static void InitializeTerrain()
         {
-            int chanceToSpawnRock = 30;
+            int chanceToSpawnRock = 10;
 
             for (int x = 1; x < Console.WindowWidth; x++)
             {

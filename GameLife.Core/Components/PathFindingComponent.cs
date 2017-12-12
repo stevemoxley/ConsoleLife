@@ -12,6 +12,12 @@ namespace GameLife.Core.Components
         public int TargetX { get; set; }
 
         public int TargetY { get; set; }
+
+        public bool ArrivedAtTarget { get; set; } = false;
+
+        public bool UnableToFindPath { get; set; } = false;
+
+        public Guid TargetId { get; set; }
   
     }
 }

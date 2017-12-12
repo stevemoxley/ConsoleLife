@@ -41,12 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\EnemyComponent.cs" />
+    <Compile Include="Components\FoodComponent.cs" />
     <Compile Include="Components\HealthComponent.cs" />
     <Compile Include="Components\ImpassableComponent.cs" />
+    <Compile Include="Components\LifeComponent.cs" />
     <Compile Include="Components\MovementPatternComponent.cs" />
     <Compile Include="Components\PathfindingComponent.cs" />
     <Compile Include="Controllers\MovementPatternController.cs" />
     <Compile Include="Controllers\PathfindingController.cs" />
+    <Compile Include="Controllers\SearchForFoodController.cs" />
+    <Compile Include="Controllers\SpawnFoodController.cs" />
     <Compile Include="EntityFactory.cs" />
     <Compile Include="GameInitializer.cs" />
     <Compile Include="Pathfinding\Node.cs" />

@@ -20,12 +20,12 @@ namespace ConsoleLife.Framework
 
         public static int Next(int min, int max)
         {
-            return _random.Next(min, max + 1);
+            return _random.Next(min, max);
         }
 
         public static int Next(int max)
         {
-            return _random.Next(max + 1);
+            return _random.Next(max);
         }
 
     }

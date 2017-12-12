@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ConsoleLife.Framework;
+using ConsoleLife.Framework.Components;
+using GameLife.Core.Components;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,14 +13,16 @@ namespace GameLife.Core.Pathfinding
     public class PathfindingService
     {
 
-        public List<Node> FindPath(int startingX, int startingY, int targetX, int targetY, Node[,] nodes)
+        public List<Node> FindPath(PositionComponent positionComponent, PathfindingComponent pathfindingComponent)
         {
+
             List<Node> openList = new List<Node>();
             List<Node> closedList = new List<Node>();
             List<Node> path = new List<Node>();
+            var nodes = GenerateNodeMap();
 
-            var startingNode = nodes[startingX, startingY];
-            var targetNode = nodes[targetX, targetY];
+            var startingNode = nodes[positionComponent.X, positionComponent.Y];
+            var targetNode = nodes[pathfindingComponent.TargetX, pathfindingComponent.TargetY];
             startingNode.G = 0;
             startingNode.F = startingNode.G + Heuristic(startingNode, targetNode);
             openList.Add(startingNode);
@@ -214,6 +219,53 @@ namespace GameLife.Core.Pathfinding
             }
 
             return false;
+        }
+
+        private Node[,] GenerateNodeMap()
+        {
+            Node[,] result = new Node[Console.WindowWidth, Console.WindowHeight];
+            var entities = Game.AllEntities.Where(e => e.HasComponent<PositionComponent>());
+
+            foreach (var entity in entities)
+            {
+                var positionComponent = entity.GetComponent<PositionComponent>();
+                Node node = new Node();
+                node.X = positionComponent.X;
+                node.Y = positionComponent.Y;
+
+                if (entity.HasComponent<MoveableComponent>())
+                {
+                    var moveableComponent = entity.GetComponent<MoveableComponent>();
+                    node.X = positionComponent.X + moveableComponent.MoveX;
+                    node.Y = positionComponent.Y + moveableComponent.MoveY;
+                }
+
+                if (entity.HasComponent<ImpassableComponent>())
+                {
+                    node.IsValid = false;
+                }
+
+                result[node.X, node.Y] = node;
+            }
+
+
+            for (int x = 0; x < Console.WindowWidth; x++)
+            {
+                for (int y = 0; y < Console.WindowHeight; y++)
+                {
+                    var node = result[x, y];
+                    if (node == null)
+                    {
+                        node = new Node();
+                        node.X = x;
+                        node.Y = y;
+                        result[node.X, node.Y] = node;
+                    }
+                }
+            }
+
+            return result;
+
         }
 
     }

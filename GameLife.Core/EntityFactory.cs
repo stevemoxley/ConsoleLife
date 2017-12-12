@@ -18,7 +18,7 @@ namespace GameLife.Core
 
             entity.Components.Add(new DrawingComponent
             {
-                Symbol = "O",
+                Symbol = "☺",
                 Color = ConsoleColor.Green
             });
 
@@ -32,14 +32,8 @@ namespace GameLife.Core
 
             entity.Components.Add(new HealthComponent());
 
-            entity.Components.Add(new PathfindingComponent()
-            {
-                TargetX = Console.WindowWidth - 1,
-                TargetY = Console.WindowHeight - 1,
-                Delay = 250
-            });
-
             entity.Components.Add(new ImpassableComponent());
+            entity.Components.Add(new LifeComponent());
 
             return entity;
         }
@@ -95,6 +89,28 @@ namespace GameLife.Core
             });
 
             entity.Components.Add(new ImpassableComponent());
+
+            return entity;
+        }
+
+        public static Entity CreateFoodEntity(int x, int y)
+        {
+            Entity entity = new Entity();
+
+            entity.Components.Add(new DrawingComponent
+            {
+                Symbol = "O",
+                Color = ConsoleColor.Magenta
+            });
+
+            entity.Components.Add(new PositionComponent
+            {
+                X = x,
+                Y = y
+            });
+
+            entity.Components.Add(new FoodComponent());
+
 
             return entity;
         }
