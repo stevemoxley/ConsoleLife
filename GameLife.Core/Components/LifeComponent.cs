@@ -13,7 +13,11 @@ namespace GameLife.Core.Components
     /// </summary>
     public class LifeComponent: Component
     {
-        bool IsCurrentlySelected { get; set; }
+        public int Health { get; set; }
+
+        public int Hunger { get; set; }
+
+        public int Sleep { get; set; }
 
     }
 }

@@ -9,5 +9,6 @@ namespace GameLife.Core.Components
 {
     public class FoodComponent : Component
     {
+        public int HungerRestoreAmount { get; set; }
     }
 }

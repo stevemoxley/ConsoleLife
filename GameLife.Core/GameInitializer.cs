@@ -24,7 +24,8 @@ namespace GameLife.Core
 
             Game.AllControllers.Add(new SpawnFoodController());
 
-            Game.AllControllers.Add(new SearchForFoodController());
+            Game.AllControllers.Add(new ActionController());
+
         }
 
         private static void InitializeEntities()

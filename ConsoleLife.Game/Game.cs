@@ -1,6 +1,7 @@
 ﻿using ConsoleLife.Framework.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -99,7 +100,8 @@ namespace ConsoleLife.Framework
             if (Console.KeyAvailable)
             {
                 var key = Console.ReadKey(true);
-                Console.WriteLine(string.Format("A key was pressed {0}", key.KeyChar.ToString()));
+                Debug.WriteLine(string.Format("A key was pressed {0}", key.KeyChar.ToString()));
+                InputHandler.Update(key.KeyChar);
             }
         }
 

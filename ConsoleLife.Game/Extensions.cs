@@ -31,11 +31,19 @@ namespace ConsoleLife.Framework
             return entity.Components.Where(c => c.GetType() == typeof(T) || c.GetType().IsSubclassOf(typeof(T))).ToList();
         }
 
+        /// <summary>
+        /// Add this entity to the game
+        /// </summary>
+        /// <param name="entity"></param>
         public static void Add(this Entity entity)
         {
             Game.AddEntity(entity);
         }
 
+        /// <summary>
+        /// Remove this entity from the game
+        /// </summary>
+        /// <param name="entity"></param>
         public static void Remove(this Entity entity)
         {
             Game.RemoveEntity(entity);

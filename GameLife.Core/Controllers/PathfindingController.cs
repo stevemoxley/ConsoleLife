@@ -64,11 +64,6 @@ namespace GameLife.Core.Controllers
                         //No path 
                         pathfindingComponent.UnableToFindPath = true;
                     }
-
-                    if (pathfindingComponent.ArrivedAtTarget || pathfindingComponent.UnableToFindPath)
-                    {
-                        //What do we do when we have arrived at our target or cant find a path?
-                    }
                 }
             }
         }

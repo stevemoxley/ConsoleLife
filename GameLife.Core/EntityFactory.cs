@@ -30,12 +30,13 @@ namespace GameLife.Core
 
             entity.Components.Add(new MoveableComponent());
 
-            entity.Components.Add(new HealthComponent());
 
             entity.Components.Add(new ImpassableComponent());
             entity.Components.Add(new LifeComponent());
 
             entity.Components.Add(new PathfindingComponent());
+
+            entity.Components.Add(new ActionComponent());
 
             return entity;
         }
