@@ -11,6 +11,15 @@ namespace ConsoleLife.Framework.Controllers
     {
         public abstract void Update(GameTime gameTime);
 
+        /// <summary>
+        /// This will run after all controllers have been updated
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public virtual void PostUpdate(GameTime gameTime)
+        {
+
+        }
+
         public List<Entity> GetEntities<T>() where T : Components.Component
         {
             return Game.AllEntities.Where(e => e.HasComponent<T>()).ToList();

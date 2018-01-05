@@ -68,6 +68,12 @@ namespace ConsoleLife.Framework
                 controller.Update(GameTime);
             }
 
+            //Post Update controllers
+            foreach (var controller in AllControllers)
+            {
+                controller.PostUpdate(GameTime);
+            }
+
             //This last
             GameTime.Update();
             Thread.Sleep(17);

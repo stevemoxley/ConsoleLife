@@ -10,7 +10,7 @@ using ConsoleLife.Framework.Components;
 
 namespace GameLife.Core.Controllers
 {
-    public class SearchForFoodController : Controller
+    public class SearchForFoodController : BaseConsoleLifeController
     {
         public override void Update(GameTime gameTime)
         {
@@ -20,33 +20,23 @@ namespace GameLife.Core.Controllers
             {
                 var pathfindingComponent = entity.GetComponent<PathfindingComponent>();
 
-                if(pathfindingComponent == null)
+                if (!pathfindingComponent.HasTarget)
                 {
                     //Check for some food
                     var foodEntities = GetEntities<FoodComponent>();
-                    if(foodEntities.Count > 0)
+                    if (foodEntities.Count > 0)
                     {
                         var food = foodEntities[0];
-                        var foodLocation = food.GetComponent<PositionComponent>();
-
-                        pathfindingComponent = new PathfindingComponent();
-                        pathfindingComponent.TargetX = foodLocation.X;
-                        pathfindingComponent.TargetY = foodLocation.Y;
-                        pathfindingComponent.Delay = 75;
-                        pathfindingComponent.TargetId = food.Id;
-                        entity.Components.Add(pathfindingComponent);
-
+                        pathfindingComponent.SetTarget(food);
                     }
                 }
                 else
                 {
-                    if(pathfindingComponent.ArrivedAtTarget || pathfindingComponent.UnableToFindPath)
+                    if (pathfindingComponent.ArrivedAtTarget)
                     {
-                        entity.Components.Remove(pathfindingComponent);
                         Game.RemoveEntity(pathfindingComponent.TargetId);
-                    }
+                    }                    
                 }
-
             }
         }
     }

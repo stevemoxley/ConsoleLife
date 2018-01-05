@@ -35,6 +35,8 @@ namespace GameLife.Core
             entity.Components.Add(new ImpassableComponent());
             entity.Components.Add(new LifeComponent());
 
+            entity.Components.Add(new PathfindingComponent());
+
             return entity;
         }
 

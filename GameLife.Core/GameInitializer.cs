@@ -41,12 +41,24 @@ namespace GameLife.Core
             var life3 = EntityFactory.CreateLifeEntity(75, 0);
             life3.Add();
 
+            //var life4 = EntityFactory.CreateLifeEntity(0, Console.WindowHeight - 1);
+            //life4.Add();
+
+            //var life5 = EntityFactory.CreateLifeEntity(25, Console.WindowHeight - 1);
+            //life5.Add();
+
+            //var life6 = EntityFactory.CreateLifeEntity(50, Console.WindowHeight - 1);
+            //life5.Add();
+
+            //var life7 = EntityFactory.CreateLifeEntity(75, Console.WindowHeight - 1);
+            //life7.Add();
+
             InitializeTerrain();
         }
 
         private static void InitializeTerrain()
         {
-            int chanceToSpawnRock = 10;
+            int chanceToSpawnRock = 30;
 
             for (int x = 1; x < Console.WindowWidth; x++)
             {

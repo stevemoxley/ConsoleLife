@@ -7,7 +7,13 @@ using System.Threading.Tasks;
 
 namespace GameLife.Core.Components
 {
+
+    /// <summary>
+    /// Represents a life form
+    /// </summary>
     public class LifeComponent: Component
     {
+        bool IsCurrentlySelected { get; set; }
+
     }
 }

@@ -12,7 +12,7 @@ using GameLife.Core.Pathfinding;
 
 namespace GameLife.Core.Controllers
 {
-    public class PathfindingController : Controller
+    public class PathfindingController : BaseConsoleLifeController
     {
 
         public PathfindingController()
@@ -36,13 +36,18 @@ namespace GameLife.Core.Controllers
                 var pathfindingComponent = entity.GetComponent<PathfindingComponent>();
                 var movableComponent = entity.GetComponent<MoveableComponent>();
 
-                if(pathfindingComponent.Elapsed && HasTarget(pathfindingComponent))
+                if (pathfindingComponent.Elapsed && pathfindingComponent.HasTarget)
                 {
-                    if(!HasNewLocation(positionComponent, pathfindingComponent))
+                    if (!HasNewLocation(positionComponent, pathfindingComponent))
                     {
                         //We are at the target
                         pathfindingComponent.ArrivedAtTarget = true;
                         continue;
+                    }
+                    else
+                    {
+                        pathfindingComponent.ArrivedAtTarget = false;
+                        pathfindingComponent.UnableToFindPath = false;
                     }
 
                     //Find the path
@@ -59,18 +64,38 @@ namespace GameLife.Core.Controllers
                         //No path 
                         pathfindingComponent.UnableToFindPath = true;
                     }
+
+                    if (pathfindingComponent.ArrivedAtTarget || pathfindingComponent.UnableToFindPath)
+                    {
+                        //What do we do when we have arrived at our target or cant find a path?
+                    }
                 }
             }
         }
 
-        private bool HasTarget(PathfindingComponent pathfindingComponent)
+        public override void PostUpdate(GameTime gameTime)
         {
-            return pathfindingComponent.TargetX != -1 && pathfindingComponent.TargetY != -1;
+            var entities = GetEntities(new List<Type>()
+            {
+                typeof(PathfindingComponent),
+                typeof(PositionComponent),
+                typeof(MoveableComponent)
+            });
+
+            foreach (var entity in entities)
+            {
+                var pathfindingComponent = entity.GetComponent<PathfindingComponent>();
+
+                if (pathfindingComponent.ArrivedAtTarget || pathfindingComponent.UnableToFindPath)
+                {
+                    pathfindingComponent.Reset();
+                }
+            }
         }
 
         private bool HasNewLocation(PositionComponent positionComponent, PathfindingComponent pathfindingComponent)
         {
-            if(positionComponent.X != pathfindingComponent.TargetX || positionComponent.Y != pathfindingComponent.TargetY)
+            if (positionComponent.X != pathfindingComponent.TargetX || positionComponent.Y != pathfindingComponent.TargetY)
             {
                 return true;
             }

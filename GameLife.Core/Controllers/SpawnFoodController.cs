@@ -10,7 +10,7 @@ using ConsoleLife.Framework.Components;
 
 namespace GameLife.Core.Controllers
 {
-    public class SpawnFoodController : Controller
+    public class SpawnFoodController : BaseConsoleLifeController
     {
         public override void Update(GameTime gameTime)
         {

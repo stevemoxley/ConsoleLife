@@ -10,7 +10,7 @@ using GameLife.Core.Components;
 
 namespace GameLife.Core.Controllers
 {
-    public class MovementPatternController : Controller
+    public class MovementPatternController : BaseConsoleLifeController
     {
         public override void Update(GameTime gameTime)
         {
