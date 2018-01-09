@@ -18,6 +18,8 @@ namespace ConsoleLife.Framework
 
         public static List<Controller> AllControllers { get; } = new List<Controller>();
 
+        public static string Scene { get; set; }
+
         public static World World { get; } = new World();
 
         public static void Start()

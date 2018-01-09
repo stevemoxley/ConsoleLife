@@ -22,13 +22,17 @@ namespace ConsoleLife.Framework.Controllers
             {
                 typeof(DrawingComponent),
                 typeof(PositionComponent)
-            }).OrderBy(x => x.GetComponent<PositionComponent>().Y).ThenBy(x => x.GetComponent<PositionComponent>().X);
+            })
+            .Where( e=> e.GetComponent<DrawingComponent>().Scene == Game.Scene)
+            .OrderBy(x => x.GetComponent<PositionComponent>().Y)
+            .ThenBy(x => x.GetComponent<PositionComponent>().X);
 
 
             foreach (var entity in entities)
             {
                 var positionComponent = entity.GetComponent<PositionComponent>();
                 var drawingComponent = entity.GetComponent<DrawingComponent>();
+
 
                 if (!positionComponent.Placed || drawingComponent.ForceRedraw)
                 {
