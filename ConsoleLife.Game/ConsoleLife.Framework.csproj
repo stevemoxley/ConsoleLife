@@ -50,6 +50,7 @@
     <Compile Include="Components\TimedComponent.cs" />
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Controllers\DrawingController.cs" />
+    <Compile Include="Controllers\GameIOController.cs" />
     <Compile Include="Controllers\MovingController.cs" />
     <Compile Include="Controllers\TimerController.cs" />
     <Compile Include="Extensions.cs" />

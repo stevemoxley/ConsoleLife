@@ -32,12 +32,12 @@ namespace ConsoleLife.Framework
 
         public static void Save()
         {
-
+            GameIO.Save("Game.txt");
         }
 
         public static void Load()
         {
-
+            GameIO.Load("Game.txt");
         }
 
         public static void AddEntity(Entity entity)
@@ -102,6 +102,10 @@ namespace ConsoleLife.Framework
                 var key = Console.ReadKey(true);
                 Debug.WriteLine(string.Format("A key was pressed {0}", key.KeyChar.ToString()));
                 InputHandler.Update(key.KeyChar);
+            }
+            else
+            {
+                InputHandler.Update(new char());
             }
         }
 

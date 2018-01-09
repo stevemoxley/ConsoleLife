@@ -28,7 +28,6 @@ namespace GameLife.Core.Action
 
             if(!_oldColorSet)
             {
-                _oldColor = drawingComponent.Color;
                 drawingComponent.Color = ConsoleColor.Blue;
                 _oldColorSet = true;
             }
@@ -45,7 +44,7 @@ namespace GameLife.Core.Action
         }
 
         private bool _oldColorSet = false;
-        private ConsoleColor _oldColor;
+        private ConsoleColor _oldColor = ConsoleColor.Green;
         private int _sleepTime = 5000;
         private int _sleepTimer;
 

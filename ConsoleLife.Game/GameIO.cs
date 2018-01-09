@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ConsoleLife.Framework.Components;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,26 +9,31 @@ using System.Threading.Tasks;
 
 namespace ConsoleLife.Framework
 {
-    public static class GameIO
+    internal static class GameIO
     {
-
 
         public static void Save(string filename)
         {
-            var jsonString = JsonConvert.SerializeObject(Game.AllEntities);
-            File.WriteAllText(jsonString, jsonString);
+            
+            var jsonString = JsonConvert.SerializeObject(Game.AllEntities, settings);
+            File.WriteAllText(filename, jsonString);
         }
-
 
         public static void Load(string filename)
         {
             var jsonString = File.ReadAllText(filename);
-            var allEntities = JsonConvert.DeserializeObject<List<Entity>>(jsonString);
+            var allEntities = JsonConvert.DeserializeObject<List<Entity>>(jsonString, settings);
             Game.AllEntities.Clear();
-            Game.AllEntities.AddRange(allEntities);
+            Console.Clear();
+            foreach (var entity in allEntities)
+            {
+                entity.Add();
+
+                entity.GetComponent<DrawingComponent>().ForceRedraw = true;
+            }
         }
 
-
+        private static JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
 
     }
 }

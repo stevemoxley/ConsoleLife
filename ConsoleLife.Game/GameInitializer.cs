@@ -15,6 +15,7 @@ namespace ConsoleLife.Framework
             Game.AllControllers.Add(new DrawingController());
             Game.AllControllers.Add(new TimerController());
             Game.AllControllers.Add(new MovingController());
+            Game.AllControllers.Add(new GameIOController());
         }
         
     }

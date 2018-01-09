@@ -30,7 +30,7 @@ namespace ConsoleLife.Framework.Controllers
                 var positionComponent = entity.GetComponent<PositionComponent>();
                 var drawingComponent = entity.GetComponent<DrawingComponent>();
 
-                if (!positionComponent.Placed)
+                if (!positionComponent.Placed || drawingComponent.ForceRedraw)
                 {
                     Console.SetCursorPosition(positionComponent.X, positionComponent.Y);
                     Console.ForegroundColor = drawingComponent.Color;
@@ -39,6 +39,7 @@ namespace ConsoleLife.Framework.Controllers
                     positionComponent.PreviousX = positionComponent.X;
                     positionComponent.PreviousY = positionComponent.Y;
                     positionComponent.Placed = true;
+                    drawingComponent.ForceRedraw = false;
                 }
 
                 if (positionComponent.Moved)

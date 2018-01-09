@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace GameLife.Core.Action
 {
-    public abstract class BaseAction
+    public class BaseAction
     {
         public bool Complete { get; set; }
 
-        public abstract void DoAction(GameTime gameTime, Entity entity);
+        public virtual void DoAction(GameTime gameTime, Entity entity)
+        {
+
+        }
     }
 
  }

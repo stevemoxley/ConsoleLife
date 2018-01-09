@@ -12,5 +12,7 @@ namespace ConsoleLife.Framework.Components
 
         public ConsoleColor Color { get; set; } = ConsoleColor.White;
 
+        public bool ForceRedraw { get; set; } = false;
+
     }
 }

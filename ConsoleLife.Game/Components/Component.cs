@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleLife.Framework.Components
 {
-    public abstract class Component
+    public class Component
     {
     }
 }

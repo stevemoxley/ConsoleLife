@@ -20,7 +20,5 @@ namespace ConsoleLife.Framework
         public static char PreviousKeyPress { get; private set; }
 
 
-
-
     }
 }
