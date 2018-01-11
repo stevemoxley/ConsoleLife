@@ -14,6 +14,8 @@ namespace ConsoleLife.Framework
 
         public Guid Id { get; set; }
 
+        public string Scene { get; set; }
+
         public Entity()
         {
             Id = Guid.NewGuid();

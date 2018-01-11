@@ -23,7 +23,7 @@ namespace ConsoleLife.Framework.Controllers
                 typeof(DrawingComponent),
                 typeof(PositionComponent)
             })
-            .Where( e=> e.GetComponent<DrawingComponent>().Scene == Game.Scene)
+            
             .OrderBy(x => x.GetComponent<PositionComponent>().Y)
             .ThenBy(x => x.GetComponent<PositionComponent>().X);
 

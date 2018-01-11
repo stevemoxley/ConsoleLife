@@ -14,7 +14,5 @@ namespace ConsoleLife.Framework.Components
 
         public bool ForceRedraw { get; set; } = false;
 
-        public string Scene { get; set; }
-
     }
 }

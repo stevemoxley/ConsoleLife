@@ -22,7 +22,8 @@ namespace ConsoleLife.Framework.Controllers
 
         public List<Entity> GetEntities<T>() where T : Components.Component
         {
-            return Game.AllEntities.Where(e => e.HasComponent<T>()).ToList();
+            var entities = Game.AllEntities.Where(e => e.HasComponent<T>() && e.Scene == Game.Scene).ToList();
+            return entities;
         }
 
         public List<Entity> GetEntities(List<Type> componentTypes)
@@ -36,7 +37,8 @@ namespace ConsoleLife.Framework.Controllers
                 result.RemoveAll(e => !e.HasComponent(type));
             }
 
-            
+            result.RemoveAll(e => e.Scene != Game.Scene);
+
             return result;
 
         }
